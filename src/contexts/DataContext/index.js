@@ -30,6 +30,11 @@ export const DataProvider = ({ children }) => {
     if (data) return;
     getData();
   });
+
+  const last =
+    data && data.events && data.events.length > 0
+      ? data.events[data.events.length - 1]
+      : null;
   
   return (
     <DataContext.Provider
@@ -37,6 +42,7 @@ export const DataProvider = ({ children }) => {
       value={{
         data,
         error,
+        last,
       }}
     >
       {children}
